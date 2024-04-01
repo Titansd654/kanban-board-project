@@ -1,7 +1,19 @@
-.button-remove-task {
+.button-close {
+    font-weight: 500;
+    max-width: 50px;
+    float: right;
+    margin-top: 10px;
+}
+
+.dialog-title {
+    padding-right: 10px;
+}
+
+.button-remove-subtask {
     border-radius: 20px;
     font-weight: 500;
     max-width: 50px;
+    margin-left: 5px;
 }
 
 mat-form-field {

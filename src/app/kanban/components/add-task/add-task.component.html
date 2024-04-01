@@ -1,51 +1,89 @@
 <div class="container ">
-<div mat-dialog-title>
-    <h1>Add New Task</h1>
-</div>
+    <div mat-dialog-title class="dialog-title">
+        <button 
+            mat-button 
+            class="button-close"
+            mat-dialog-close
+        >
+            <span class="material-icons">
+                clear
+            </span>
+        </button>
+        <h1>Add New Task</h1>
+    </div>
 
-<form [formGroup]="taskForm" (ngSubmit)="onFormSubmit()" class="mat-app-background" >
-    <div mat-dialog-content>
-        <div class="row">
+    <form [formGroup]="taskForm" (ngSubmit)="onFormSubmit()" class="mat-app-background" >
+        <div mat-dialog-content>
             <div class="row">
-                <label>Title</label>
-            </div>
-            <mat-form-field appearance="outline">
-                <input matInput placeholder="e.g. Take cofee break" formControlName="title">
-            </mat-form-field>
-        </div>
-
-        <div class="row">
-            <div class="row">
-                <label>Description</label>
-            </div>
-            <mat-form-field appearance="outline">
-              <textarea 
-                matInput
-                placeholder="e.g It's always good to take a break. This 15 minutes break will recharge the batteries a little."
-                formControlName="description"
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="5"
-                cdkAutosizeMaxRows="5">
-              </textarea>
-            </mat-form-field>
-        </div>
-
-        <div class="row" formArrayName="subtasks">
-            <div class="row">
-                <label>Subtasks</label>
-            </div>
-            <div *ngFor="let substask of getsubtasks(); let i = index" class="subtasks">
-                
-                <mat-form-field appearance="outline" class="input-height">
-                    <input matInput placeholder="e.g. Make cofee" [formControl]="$any(substask)">
+                <div class="row">
+                    <label>Title</label>
+                </div>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="e.g. Take cofee break" formControlName="title">
                 </mat-form-field>
-                <button 
-                    mat-flat-button 
-                    color="primary" 
-                    class="button-remove-task"
-                    (click)="removeTask(i)"
-                >X
-                </button>
+            </div>
+
+            <div class="row">
+                <div class="row">
+                    <label>Description</label>
+                </div>
+                <mat-form-field appearance="outline">
+                <textarea 
+                    matInput
+                    placeholder="e.g It's always good to take a break. This 15 minutes break will recharge the batteries a little."
+                    formControlName="description"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="5"
+                    cdkAutosizeMaxRows="5">
+                </textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="row" formArrayName="subTasks">
+                <div class="row">
+                    <label>Subtasks</label>
+                </div>
+                <div *ngIf="taskForm.get('subTasks')">
+                    <div *ngFor="let substask of getsubtasks(); let i = index" class="subtasks">
+                        <ng-container [formGroupName]="i">
+                    
+                    <mat-form-field appearance="outline" class="input-height">
+                        <input appAutoFocus matInput placeholder="e.g. Make coffee" name="inputSubtask-{{i}}" formControlName="title">
+                    </mat-form-field>
+                    <button 
+                        mat-button 
+                        class="button-remove-subtask"
+                        (click)="removeTask(i)"
+                    >
+                        <span class="material-icons">
+                            clear
+                        </span>
+                    </button>
+                </ng-container>
+                </div>
+            </div>
+
+                <div class="row">
+                    <button 
+                        mat-flat-button 
+                        color="primary" 
+                        class="button-new-subtask"
+                        (click)="addNewSubtask()"
+                        type="button"
+                    >+Add New Subtask
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row">
+                    <label>Status</label>
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let status of statuses" [value]="status.id" >{{ status.title }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
 
             <div class="row">
@@ -53,33 +91,11 @@
                     mat-flat-button 
                     color="primary" 
                     class="button-new-subtask"
-                    (click)="addTask()"
-                >+Add New Subtask
+                    type="submit"
+                >+Create Task
                 </button>
             </div>
         </div>
 
-        <div class="row">
-            <div class="row">
-                <label>Status</label>
-            </div>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="status" [(value)]="selected">
-                    <mat-option *ngFor="let status of statuses" [value]="status.id" >{{ status.title }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div class="row">
-            <button 
-                mat-flat-button 
-                color="primary" 
-                class="button-new-subtask"
-                type="submit"
-            >+Create Task
-            </button>
-        </div>
-    </div>
-
-</form>
+    </form>
 </div>

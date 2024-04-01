@@ -8,7 +8,7 @@ export interface TaskInterface {
     id: number;
     title: string;
     description: string;
-    status: string;
+    status: number;
     order: number;
     subTasks: SubTaskInterface[];
 }
@@ -18,13 +18,13 @@ export interface ColumnInterface {
     title: string;
     order: number;
     iconColor: string;
-    tasks: TaskInterface[];
 }
 
 export interface BoardInterface {
     id: number;
     name: string;
     columns: ColumnInterface[];
+    tasks: TaskInterface[];
 }
 
 export interface KanbanBoardInterface {

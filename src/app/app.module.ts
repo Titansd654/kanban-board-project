@@ -8,10 +8,12 @@ import { KanbanModule } from './kanban/kanban.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { StrikethroughDirective } from './strikethrough.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StrikethroughDirective
   ],
   imports: [
     BrowserModule,

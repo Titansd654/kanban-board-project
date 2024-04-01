@@ -7,9 +7,30 @@
     <div class="list-section">
         <span class="list-title">ALL BOARDS (3)</span>
         <mat-action-list>
-            <button mat-list-item >Platform Launch</button> 
-            <button mat-list-item >Marketing Plan</button>
-            <button mat-list-item >Roadmap</button>
+            <button mat-list-item class="list-element active-white" [ngClass]="{'active-dark': isDarkTheme}" >
+                <div class="inner-list">
+                    <span class="material-icons">list_alt</span>
+                    <p class="center-list-item">Platform Launch</p>
+                </div>
+            </button>
+            <button mat-list-item class="list-element">
+                <div class="inner-list">
+                    <span class="material-icons">list_alt</span>
+                    <p class="center-list-item">Marketing Plan</p>
+                </div>
+            </button>
+            <button mat-list-item class="list-element">
+                <div class="inner-list">
+                    <span class="material-icons">list_alt</span>
+                    <p class="center-list-item">Roadmap</p>
+                </div>
+            </button>
+            <button mat-list-item class="list-element">
+                <div class="inner-list">
+                    <span class="material-icons">list_alt</span>
+                    <p class="center-list-item">+ Create New Board</p>
+                </div>
+            </button>
         </mat-action-list>
     </div>
 

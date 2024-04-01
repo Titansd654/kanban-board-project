@@ -1,0 +1,46 @@
+<div class="container ">
+    
+    <h1 mat-dialog-title mat-> {{ taskData.title }} </h1>
+
+    <div mat-dialog-content>
+        <div class="row">
+            <p> {{ taskData.description }} </p>
+        </div>
+
+        <div class="row">
+            <h3>Subtasks ( {{ getCompletedSubtasksCount(subtaskData) }} of {{ subtaskData.length }} )</h3>
+        </div>
+
+        <div class="row">
+            <section class="option-section">
+
+                <div class="row" *ngFor="let subtask of subtaskData">
+                <mat-checkbox 
+                    [checked]="subtask.completed"
+                    (change)="onCheckboxChange(subtask.id, $event.checked)"
+                >
+                 <span [appStriketh]="subtask.completed">{{ subtask.title }}</span> 
+                </mat-checkbox>
+                </div>
+
+                <!-- <mat-checkbox (change)="setAll($event.checked)" >Research competitor pricing and business models</mat-checkbox>
+                <mat-checkbox [checked]="true">Outline a business model that works for out solution</mat-checkbox>
+                <mat-checkbox >Talk to potential customers about our proposed solution and ask for fair price expectancy</mat-checkbox> -->
+            </section>
+            
+        </div>
+
+        <div class="row">
+            <div class="row">
+                <label>Status</label>
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-select [(value)]="selected" (selectionChange)="onStatusChange($event.value)">
+                    <mat-option *ngFor="let status of statuses" [value]="status.id" >{{ status.title }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+    </div>
+
+</div>
